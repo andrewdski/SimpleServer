@@ -24,18 +24,23 @@ import simpleserver.Player;
 
 public class AreaCommand extends AbstractCommand implements PlayerCommand {
   public AreaCommand() {
-    super("area", "Use once to start a protect area. Use again to complete the protect area.");
+    super("area",
+          "Use once to start a protect area. Use again to complete the protect area.");
   }
 
   public void execute(Player player, String message) {
     String[] arguments = extractArguments(message);
-    boolean tall=false;
-    if (arguments.length>0) {
+    boolean tall = false;
+    if (arguments.length > 0) {
       if (arguments[0].equals("tall")) {
-        tall=true;
+        tall = true;
       }
     }
-    int ret = player.getServer().areas.createArea(player.getName(), (int)player.getX(), (byte)player.getY(), (int)player.getZ(), false, player.getGroupId(),tall);
+    int ret = player.getServer().areas.createArea(player.getName(),
+                                                  (int) player.getX(),
+                                                  (byte) player.getY(),
+                                                  (int) player.getZ(), false,
+                                                  player.getGroupId(), tall);
     switch (ret) {
       case 1:
         player.addMessage("Started setting the area... use the command again to finish setting area.");
@@ -44,8 +49,8 @@ public class AreaCommand extends AbstractCommand implements PlayerCommand {
         player.addMessage("Area created!");
         break;
       default:
-        player.addMessage("Error "+ret+"!");
+        player.addMessage("Error " + ret + "!");
         break;
-      }
+    }
   }
 }
