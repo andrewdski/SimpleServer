@@ -278,8 +278,13 @@ public class StreamTunnel {
             byte y = in.readByte();
             int z = in.readInt();
             byte face = in.readByte();
-
-            if (!server.chests.hasLock(x, y, z) || player.isAdmin()) {
+            String owner = server.areas.isProtected(player, 
+                                                    (int)player.getX(), 
+                                                    (int)player.getY(), 
+                                                    (int)player.getZ());
+            if (!server.chests.hasLock(x, y, z) || 
+                player.isAdmin() || 
+                owner==null) {
               if (server.chests.hasLock(x, y, z)
                   && status == BLOCK_DESTROYED_STATUS) {
                 server.chests.releaseLock(x, y, z);
@@ -340,6 +345,18 @@ public class StreamTunnel {
         else if (server.chests.hasLock(x, y, z) && !player.isAdmin()
             && !server.chests.ownsLock(player.getName(), x, y, z)) {
           player.addMessage("\u00a7cThis chest is locked!");
+          writePacket = false;
+        }
+        else if (server.areas.isProtected(player, 
+                  (int)player.getX(), 
+                  (int)player.getY(), 
+                  (int)player.getZ())!=null
+            && !player.isAdmin()) {
+          String owner = server.areas.isProtected(player, 
+                                                  (int)player.getX(), 
+                                                  (int)player.getY(), 
+                                                  (int)player.getZ());
+          player.addMessage("\u00a7cThis area belongs to "+owner+"!");
           writePacket = false;
         }
         else if ((player.getGroupId() < 0)

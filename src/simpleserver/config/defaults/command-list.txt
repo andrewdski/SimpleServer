@@ -33,3 +33,6 @@ warpmeto=2-4
 warptome=2-4
 whitelist=2-4
 who=list;-1
+area=1-4
+resetarea=1-4
+removearea=1-4

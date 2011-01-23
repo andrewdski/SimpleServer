@@ -29,6 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
+import simpleserver.config.AreaList;
 import simpleserver.config.BlockList;
 import simpleserver.config.ChestList;
 import simpleserver.config.CommandList;
@@ -79,6 +80,7 @@ public class Server {
   public MuteList mutelist;
   public GiveAliasList giveAliasList;
   public CommandList commands;
+  public AreaList areas;
 
   private List<Resource> resources;
   public PlayerList playerList;
@@ -344,6 +346,7 @@ public class Server {
     resources.add(whitelist = new WhiteList());
     resources.add(mutelist = new MuteList());
     resources.add(giveAliasList = new GiveAliasList());
+    resources.add(areas = new AreaList(options));
 
     systemInput = new SystemInputQueue();
     adminLog = new AdminLog();
