@@ -208,7 +208,7 @@ public class AreaList extends AsciiConfig {
     }
 
     public boolean intersect(int x) {
-      if (x > a && x < b) {
+      if (x >= a && x <= b) {
         return true;
       }
       return false;

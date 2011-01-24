@@ -36,9 +36,11 @@ public class AreaCommand extends AbstractCommand implements PlayerCommand {
         tall = true;
       }
     }
+    System.out.println("X: " + player.getX() + " Y: " + player.getY() + " Z: " + player.getZ());
+    System.out.println("X: " + (int)player.getX() + " Y: " + (int)player.getY() + " Z: " + (int)player.getZ());
     int ret = player.getServer().areas.createArea(player.getName(),
                                                   (int) player.getX(),
-                                                  (byte) player.getY(),
+                                                  (int) player.getY(),
                                                   (int) player.getZ(), false,
                                                   player.getGroupId(), tall);
     switch (ret) {
