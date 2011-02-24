@@ -78,7 +78,7 @@ public class MessageHandler {
       }
     }
 
-    if (line.contains("[INFO] Done! ")) {
+    if (line.matches(".*\\[INFO\\] Done \\(\\d*ns\\)! .*")) {
       synchronized (this) {
         loaded = true;
         notifyAll();
